@@ -6,16 +6,14 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/13 09:43:47 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/14 08:34:28 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_init_struct(const char *str, t_struct *info)
+void			ft_reset_struct(t_struct *info)
 {
-	info->cmpt = 0;
-	info->phrase = str;
 	info->hash = 0;
 	info->zero = 0;
 	info->minus = 0;
@@ -26,21 +24,31 @@ void			ft_init_struct(const char *str, t_struct *info)
 	info->precision_find = 0;
 }
 
+void			ft_aff(const char *str, t_struct *info, va_list ap)
+{
+
+}
+
 void			ft_printf_2(const char *str, ...)
 {
 	va_list		ap;
 	t_struct	info;
 
-	ft_init_struct(str, &info);
+	ft_reset_struct(&info);
+	info.cmpt = 0;
 	va_start(ap, str);
-	while (info.phrase[info.cmpt])
+	while (str[info.cmpt])
 	{
-		if(info.phrase[info.cmpt] == '%')
-			ft_parsing(str, info, ap);
-			//ft_flag(va_arg(ap, char*), &info);
-			//ft_aff_pour(va_arg(ap, char*), &info);
+		if(str[info.cmpt] == '%')
+		{
+			info.cmpt++;
+			if (strchr("#-+ .*0123456789hlL"))
+				ft_parsing(str, &info, ap);
+			ft_aff(str, &info,  ap);
+			ft_reset_struct(&info);
+		}
 		else if(info.phrase[info.cmpt] != '%')
-			ft_putchar(info.phrase[info.cmpt]);
+			ft_putchar(str[info.cmpt]);
 		info.cmpt++;
 	}
 	va_end(ap);
@@ -54,5 +62,5 @@ int				main(void)
 	animal	= "thon";
 	cri 	= "blup blup";
 	ft_printf_2("%s, disent les %9s. Ta mere sens le %6s. Donc ta mere dit %19s", cri, animal, animal, cri);
-	return(0);
+	return(0
 }

@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/13 09:43:52 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/14 08:34:36 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,9 @@
 # include <stdarg.h>
 # include "../ft_printf/libft/libft.h"
 
-/* flag : 0 | 1 | 2 | 3 | 4
- * 		  #   0   -   +  esp */
-
-
-
 typedef	struct s_struct
 {
 	int 			cmpt;
-	const char		*phrase;
 	char 			**arg;
 	char			*type;
 	//flags
@@ -41,6 +35,7 @@ typedef	struct s_struct
 	int				precision;
 	int				precision_find;
 	//longueur field
+	// 1 = h | 2 = hh | 3 = l | 4 = ll | 5 = L
 	int				lenght;
 	//autres
 	char			*atoi;
