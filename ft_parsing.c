@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 00:59:01 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/14 08:34:30 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/18 01:44:26 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,19 @@ void	ft_precision(const char *str, t_struct *info, va_list ap)
 
 void	ft_width(const char *str, t_struct *info, va_list ap)
 {
-	while ((str[info->cmpt] > 47 && str[info->cmpt] < 58) 
-		|| (str[info->cmpt] == '*'))
+	while (ft_isdigit(str[info->cmpt]) || (str[info->cmpt] == '*'))
 	{
-		if(str[info->cmpt] > 47 && str[info->cmpt] < 58)
+		if(ft_isdigit(str[info->cmpt]))
 		{
 			info->width = ft_atoi(&str[info->cmpt]);
-			while (str[info->cmpt] > 47 && str[info->cmpt] < 58)
+			while (ft_isdigit(str[info->cmpt]))
 				info->cmpt++;
 		}
 		if (str[info->cmpt] == '*')
 		{
 			info->width = va_arg(ap, int);
+			info->minus = (info->width < 0) ? 1 : info->minus;
+			info->width = (info->width < 0) ? -info->width : info->width;
 			info->cmpt++;
 		}
 	}
@@ -100,7 +101,7 @@ void	ft_flag(const char *str, t_struct *info)
 	if (info->plus == 1)
 		info->space = 0;
 	if (info->minus == 1)
-		info-->zero = 0;
+		info->zero = 0;
 }
 
 void	ft_parsing(const char *str, t_struct *info, va_list ap)

@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/14 08:34:36 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:09:14 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include "../ft_printf/libft/libft.h"
+# include "../libft/libft.h"
 
 typedef	struct s_struct
 {
@@ -36,7 +36,7 @@ typedef	struct s_struct
 	int				precision_find;
 	//longueur field
 	// 1 = h | 2 = hh | 3 = l | 4 = ll | 5 = L
-	int				lenght;
+	int				length;
 	//autres
 	char			*atoi;
 }				t_struct;
