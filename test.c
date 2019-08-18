@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 04:47:24 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/18 01:40:54 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/18 02:27:35 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 int		main(void)
 {
 	char	*truc;
-	double 	a;
+	float 	a;
 
 	a = 255;
 	truc = "tazwrxytcu";
 
-	printf("%245*4*f",-5, 19, a);
+	printf("%%%%%%%");
 	//write(1, &a, 2);
 	return(0);
 }

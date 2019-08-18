@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/17 06:09:14 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/18 02:27:36 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef	struct s_struct
 	// 1 = h | 2 = hh | 3 = l | 4 = ll | 5 = L
 	int				length;
 	//autres
+	int				found;
 	char			*atoi;
 }				t_struct;
 

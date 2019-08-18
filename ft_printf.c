@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/17 23:30:41 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/18 02:27:31 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			ft_reset_struct(t_struct *info)
 	info->precision = 0;
 	info->precision_find = 0;
 	info->length = 0;
+	info->found = 0;
 }
 
 /*void			ft_aff(const char *str, t_struct *info, va_list ap)
@@ -76,6 +77,6 @@ int				main(void)
 
 	animal	= "thon";
 	cri 	= "blup blup";
-	ft_printf_2("%s, disent les %9s. Ta mere sens le %6s. Donc ta mere dit %19s", cri, animal, animal, cri);
+	ft_printf_2("%s, disent les %9s. Ta mere sens le %6ks. Donc ta mere dit %19s", cri, animal, animal, cri);
 	return(0);
 }

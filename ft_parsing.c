@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 00:59:01 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/18 01:44:26 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/18 02:27:32 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_lenght(const char *str, t_struct *info)
 		while (ft_strchr("hlL", str[info->cmpt]))
 			info->cmpt++;
 	}
+	if (ft_strchr("diouxXcsp%", str[info->cmpt]))
+		info->found = 1;
 }
 
 void	ft_precision(const char *str, t_struct *info, va_list ap)
@@ -106,8 +108,21 @@ void	ft_flag(const char *str, t_struct *info)
 
 void	ft_parsing(const char *str, t_struct *info, va_list ap)
 {
-	ft_flag(str, info);
-	ft_width(str, info,  ap);
-	ft_precision(str, info, ap);
-	ft_lenght(str, info);
+	int		iteration;
+
+	iteration = 0;
+	while (info->found == 0 && iteration < 200)
+	{
+		ft_flag(str, info);
+		ft_width(str, info,  ap);
+		ft_precision(str, info, ap);
+		ft_lenght(str, info);
+		iteration++;
+	}
+	if (iteration == 200)
+	{
+		write(1, "charactere ", 11);
+		write(1, &str[info->cmpt], 1);
+		write(1, " illisible ou incorrect", 23);
+	}
 }
