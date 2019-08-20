@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/18 02:27:36 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/20 03:03:46 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ typedef	struct s_struct
 
 void			ft_printf_2(const char *str, ...);
 void			ft_parsing(const char *str, t_struct *info, va_list ap);
-
+void			ft_print_decimal(const char *str, t_struct *info, va_list ap);
+int         	ft_nbr_len_base(intmax_t value, int base);
+int         	ft_itoa_base_printf(intmax_t nbr, int base);
+void    		ft_padding_left(int nbrlen, t_struct *inf0);
+void    		ft_padding_right(int nbrlen, int n, t_struct *info);
 #endif

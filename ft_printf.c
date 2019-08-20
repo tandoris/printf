@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/18 02:27:31 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/20 03:19:27 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void			ft_reset_struct(t_struct *info)
 	info->found = 0;
 }
 
-/*void			ft_aff(const char *str, t_struct *info, va_list ap)
+void			ft_aff(const char *str, t_struct *info, va_list ap)
 {
 	if (str[info->cmpt] == 'd' || str[info->cmpt] == 'i')
-		ft_print_decimal(str[info->cmpt], info, ap);
-	else if (str[info->cmpt] == 'o')
+		ft_print_decimal(str, info, ap);
+	/*else if (str[info->cmpt] == 'o')
 		ft_print_octal(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == 'u')
 		ft_print_unsigned(str[info->cmpt], info, ap);
@@ -43,8 +43,8 @@ void			ft_reset_struct(t_struct *info)
 	else if (str[info->cmpt] == 's')
 		ft_print_string(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == '%')
-		ft_print_percent(str[info->cmpt], info);
-}*/
+		ft_print_percent(str[info->cmpt], info);*/
+}
 
 void			ft_printf_2(const char *str, ...)
 {
@@ -60,7 +60,10 @@ void			ft_printf_2(const char *str, ...)
 		{
 			info.cmpt++;
 			ft_parsing(str, &info, ap);
-		//	ft_aff(str, &info,  ap);
+			  if (info.found == 1)
+		  		ft_aff(str, &info,  ap);
+		//	else
+		//		ft_aff_error_carac()
 			ft_reset_struct(&info);
 		}
 		else if(str[info.cmpt] != '%')
@@ -74,9 +77,13 @@ int				main(void)
 {
 	char 		*animal;
 	char		*cri;
+	int 		a;
 
+	a = 256;
 	animal	= "thon";
 	cri 	= "blup blup";
-	ft_printf_2("%s, disent les %9s. Ta mere sens le %6ks. Donc ta mere dit %19s", cri, animal, animal, cri);
+	ft_printf_2("%+05d", a);
+	write(1, "\n", 1);
+	printf("%+05d", a);
 	return(0);
 }
