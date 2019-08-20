@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/20 05:32:46 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/20 23:36:04 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,18 @@ void			ft_printf_2(const char *str, ...)
 	va_end(ap);
 }
 
-int				main(void)
+int				main(int ac, char **av)
 {
 	char 		*animal;
 	char		*cri;
 	int 		a;
-
+	
+	(void)ac;
 	a = 256;
 	animal	= "thon";
 	cri 	= "blup blup";
-	ft_printf_2("%+05d", a);
+	ft_printf_2(av[1], a);
 	write(1, "\n", 1);
-	printf("%+05d", a);
+	printf(av[1], a);
 	return(0);
 }
