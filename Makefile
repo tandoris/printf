@@ -6,7 +6,7 @@
 #    By: clboutry <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/20 04:12:06 by clboutry          #+#    #+#              #
-#    Updated: 2019/08/20 04:24:37 by clboutry         ###   ########.fr        #
+#    Updated: 2019/08/20 04:31:36 by clboutry         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	#make -C libft/
 	$(CC) $(FLAGS) $(LIBFT) $(OBJS) -o $(NAME) 
 
 clean:
