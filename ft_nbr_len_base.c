@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_nbr_len_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 04:47:24 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/20 03:10:04 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/19 23:05:19 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/20 04:11:55 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int		main(void)
+int			ft_nbr_len_base(intmax_t value, int base)
 {
-	char	*truc;
-	int 	a;
+	int		i;
 
-	a = 256;
-	truc = "tazwrxytcu";
-
-	printf("%#+ 05.3d", a);
-	//write(1, &a, 2);
-	return(0);
+	i = 0;
+	if (value == 0)
+		return (1);
+	if (value < -9223372036854775807)
+		return (20);
+	if (value < 0)
+	{
+		i++;
+		value *= -1;
+	}
+	while (value > 0)
+	{
+		value /= base;
+		i++;
+	}
+	return (i);
 }
