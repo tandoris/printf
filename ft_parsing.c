@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 00:59:01 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/20 04:30:20 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/21 06:08:01 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_precision(const char *str, t_struct *info, va_list ap)
 		}
 		while (str[info->cmpt] == '*' || ft_isdigit(str[info->cmpt]))
 			info->cmpt++;
+		info->zero = 0;
 	}
 }
 

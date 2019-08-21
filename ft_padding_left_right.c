@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 01:40:47 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/20 03:54:54 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/21 06:08:05 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,11 @@ void	ft_padding_left(int nbrlen, t_struct *info)
 	}
 }
 
-void	ft_padding_right(int nbrlen, int neg, t_struct *info)
+void	ft_padding_right(int nbrlen, t_struct *info)
 {
-	if (info->precision_find == 0)
-		while (info->width-- > nbrlen)
-		{
-			if (info->zero == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
-		}
-	else
+	while (info->width)
 	{
-		if (info->plus == 1)
-			info->width--;
-		while (info->width-- > info->precision)
-		{
-			if ((info->zero && info->width != info->precision) || neg == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
-		}
+		write(1, "0", 1);
+		info->width--;
 	}
 }

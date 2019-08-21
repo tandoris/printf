@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/20 04:30:27 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/21 04:59:41 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void			ft_print_decimal(const char *str, t_struct *info, va_list ap);
 int         	ft_nbr_len_base(intmax_t value, int base);
 int         	ft_itoa_base_printf(intmax_t nbr, int base);
 void    		ft_padding_left(int nbrlen, t_struct *inf0);
-void    		ft_padding_right(int nbrlen, int n, t_struct *info);
+void    		ft_padding_right(int nbrlen, t_struct *info);
 #endif
