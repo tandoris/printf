@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbr_len_base.c                                  :+:      :+:    :+:   */
+/*   ft_padding_left.c 		                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 23:05:19 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/23 08:36:57 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/19 01:40:47 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/23 08:49:01 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_nbr_len_base(intmax_t value, int base)
+void	ft_padding_left(int nbrlen, t_struct *info)
 {
-	int		i;
-
-	i = 0;
-	if (value == 0)
-		return (1);
-	if (value < -9223372036854775807)
-		return (20);
-	if (value < 0)
+	while (info->width >= nbrlen)
 	{
-		i++;
-		value *= -1;
+		write(1, " ", 1);
+		info->width--;
 	}
-	while (value > 0)
-	{
-		value /= base;
-		i++;
-	}
-	return (i);
 }

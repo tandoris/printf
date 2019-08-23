@@ -6,29 +6,29 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 04:45:04 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/21 06:13:27 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/23 08:59:07 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_print_right2(intmax_t nbr, int neg, t_struct *info, int nbrlen)
+int			ft_print_right2(intmax_t nbr, int neg, t_struct *info, int nbrlen)
 {
 	if (neg == 1 || info->plus == 1)
 		info->width--;
-	if (info->space == 1)
+	if (info->space == 1 && neg != 1)
 	{
 		write(1, " ", 1);
 		info->width--;
 	}
-	info->width = (nbrlen > info->precision) ? info->width - nbrlen : info->width - info->precision;
+	info->width = (nbrlen >= info->precision) ? info->width - nbrlen : info->width - info->precision;
 	info->precision = (nbr != 0) ? info->precision - nbrlen : info->precision;
 	while ((info->precision_find == 1 && info->width > 0) || (info->zero == 0 && info->width > 0))
 	{
 		write(1, " ", 1);
 		info->width -= 1;
 	}
-	while (info->width > 0 && info->zero == 1)
+	while (info->width-- > 0 && info->zero == 1)
 	{
 		if (neg == 1 || (info->plus && neg == 1))
 			write(1, "-", 1);
@@ -37,30 +37,34 @@ void		ft_print_right2(intmax_t nbr, int neg, t_struct *info, int nbrlen)
 		neg = 0;
 		info->plus = 0;
 		write(1, "0", 1);
-		info->width -= 1;
 	}
+	return (neg);
 }
 
 void		ft_print_right(intmax_t nbr, t_struct *info)
 {
 	int nbrlen;
 	int	neg;
+	int	z;
 
-	nbrlen = ft_nbr_len_base(nbr, 10);
 	neg = (nbr < 0) ? 1 : 0;
 	nbr = (nbr < 0) ? -nbr : nbr;
-	ft_print_right2(nbr, neg, info, nbrlen);
+	z = (nbr == 0) ? 1 : 0;
+	nbrlen = ft_nbr_len_base(nbr, 10);
+	neg = ft_print_right2(nbr, neg, info, nbrlen);
+	if (nbr == 0 && info->precision == 0)
+		write(1, " ", 1);
 	if ((info->plus == 1 && neg == 1) || neg == 1)
 		write(1, "-",1);
 	if (info->plus == 1 && neg == 0)
 		write(1, "+", 1);
-	while (info->precision > 0)
+	while (info->precision > z)
 	{
 		write(1, "0", 1);
 		info->precision -= 1;
 	}
-	if (nbr != 0)
-		ft_itoa_base_printf(nbr, 10);
+	if (nbr != 0 || info->precision != 0)
+	ft_itoa_base_printf(nbr, 10);
 }
 
 int			ft_print_left2(intmax_t nbr, int neg, t_struct *info)
@@ -95,7 +99,7 @@ void		ft_print_left(intmax_t nbr, t_struct *info)
 
 	nbrlen = ft_nbr_len_base(nbr, 10);
 	neg = (nbr < 0) ? 1 : 0;
-	nbr = (nbr < 0) ? -nbr : nbr;
+	nbr = (nbr < 0) ? nbr *= -1 : nbr;
 	if (ft_print_left2(nbr, neg, info) == 1)
 		return ;
 	if (info->plus ==  1 && neg == 0)
@@ -134,7 +138,7 @@ void		ft_print_decimal(const char *str, t_struct *info, va_list ap)
 			nbr = va_arg(ap, long long);
 		if (info->minus == 1)
 			ft_print_left(nbr, info);
-		else
+	else
 			ft_print_right(nbr, info);
 	}
 }

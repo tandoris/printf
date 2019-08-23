@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/21 06:09:28 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/23 08:59:37 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				main(int ac, char **av)
 	int 		a;
 	
 	(void)ac;
-	a = 52;
+	a = -15;
 	animal	= "thon";
 	cri 	= "blup blup";
 	ft_printf_2(av[1], a);

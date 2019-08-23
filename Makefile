@@ -6,7 +6,7 @@
 #    By: clboutry <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/20 04:12:06 by clboutry          #+#    #+#              #
-#    Updated: 2019/08/20 04:31:36 by clboutry         ###   ########.fr        #
+#    Updated: 2019/08/23 03:19:28 by clboutry         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = printf
 SRCS = ft_printf.c\
 	   ft_itoa_base_printf.c\
 	   ft_nbr_len_base.c\
-	   ft_padding_left_right.c\
+	   ft_padding_left.c\
 	   ft_print_decimal.c\
 	   ft_parsing.c\
 
