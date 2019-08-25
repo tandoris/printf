@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/25 00:48:13 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/25 10:36:55 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 	else if (str[info->cmpt] == 'x' || str[info->cmpt] == 'X')
 		ft_print_hex(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == 'p')
-		ft_print_pointer(str[info->cmpt], info, ap);
+		ft_print_pointer(str[info->cmpt], info, ap);*/
 	else if (str[info->cmpt] == 'c')
-		ft_print_char(str[info->cmpt], info, ap);
-	else if (str[info->cmpt] == 's')
+		ft_print_char(str, info, ap);
+	/*else if (str[info->cmpt] == 's')
 		ft_print_string(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == '%')
 		ft_print_percent(str[info->cmpt], info);*/
 }
 
-void			ft_printf_2(const char *str, ...)
+void			ft_printf(const char *str, ...)
 {
 	va_list		ap;
 	t_struct	info;
@@ -80,11 +80,11 @@ int				main(int ac, char **av)
 	int 		a;
 	
 	(void)ac;
-	a = -15;
+	a = 56;
 	animal	= "thon";
 	cri 	= "blup blup";
-	ft_printf_2(av[1], a);
+	ft_printf(av[1], ft_atoi(av[2]));
 	write(1, "\n", 1);
-	printf(av[1], a);
+	printf(av[1], ft_atoi(av[2]));
 	return(0);
 }

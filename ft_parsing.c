@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 00:59:01 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/25 00:48:02 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/25 10:46:13 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	ft_precision(const char *str, t_struct *info, va_list ap)
 		}
 		while (str[info->cmpt] == '*' || ft_isdigit(str[info->cmpt]))
 			info->cmpt++;
-		info->zero = 0;
 	}
 }
 
@@ -122,4 +121,7 @@ void	ft_parsing(const char *str, t_struct *info, va_list ap)
 	}
 	if (iteration == 200)
 		write(1, &str[info->cmpt], 1);
+	if (info->found == 1 && ft_strchr("diouxX", str[info->cmpt]) 
+			&& info->precision_find == 1)
+		info->zero = 0;
 }
