@@ -6,12 +6,11 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 07:02:33 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 12:39:05 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:10:00 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 void				ft_print_left_char(unsigned char c, t_struct *info)
 {
@@ -38,7 +37,7 @@ void				ft_print_right_char(unsigned char c, t_struct *info)
 
 void				ft_print_char(const char *str, t_struct *info, va_list ap)
 {
-	unsigned char 	c;
+	unsigned char	c;
 
 	if (str[info->cmpt] == 'c')
 		c = (unsigned char)va_arg(ap, int);

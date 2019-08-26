@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 07:15:49 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 12:38:54 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 17:57:31 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_print_string_left(char *string, t_struct *info)
 
 void		ft_print_string_right(char *string, t_struct *info)
 {
-	int strlen;
+	int		strlen;
 
 	if (!string)
 		string = "(null)";
@@ -48,7 +48,6 @@ void		ft_print_string_right(char *string, t_struct *info)
 	}
 	write(1, string, strlen);
 }
-
 
 void		ft_print_string(const char *str, t_struct *info, va_list ap)
 {

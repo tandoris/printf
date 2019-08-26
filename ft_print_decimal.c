@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 04:45:04 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 15:03:53 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:06:02 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		ft_print_right(intmax_t nbr, t_struct *info)
 		write(1, "-", 1);
 		nbrlen--;
 	}
-	info->precision = (info->width > info->precision) 
+	info->precision = (info->width > info->precision)
 		? info->width : info->precision;
 	while (nbrlen++ < info->precision)
 		write(1, "0", 1);
@@ -70,11 +70,11 @@ int			ft_print_left2(intmax_t nbr, int neg, t_struct *info)
 		if (info->plus == 1 && info->width)
 		{
 			info->width--;
-	   		write(1, "+", 1);
+			write(1, "+", 1);
 		}
 		while (info->width != 0)
 		{
-		   	write(1, " ", 1);
+			write(1, " ", 1);
 			info->width--;
 		}
 		return (1);
@@ -87,7 +87,6 @@ int			ft_print_left2(intmax_t nbr, int neg, t_struct *info)
 	return (0);
 }
 
-
 void		ft_print_left(intmax_t nbr, t_struct *info)
 {
 	int nbrlen;
@@ -98,7 +97,7 @@ void		ft_print_left(intmax_t nbr, t_struct *info)
 	nbr = (nbr < 0) ? nbr *= -1 : nbr;
 	if (ft_print_left2(nbr, neg, info) == 1)
 		return ;
-	if (info->plus ==  1 && neg == 0)
+	if (info->plus == 1 && neg == 0)
 	{
 		write(1, "+", 1);
 		info->precision++;
@@ -112,7 +111,7 @@ void		ft_print_left(intmax_t nbr, t_struct *info)
 	}
 	while (nbrlen++ < info->precision)
 		write(1, "0", 1);
-   	ft_itoa_base_printf(nbr, 10);
+	ft_itoa_base_printf(nbr, 10);
 	ft_padding_left(nbrlen, info);
 }
 
@@ -122,7 +121,7 @@ void		ft_print_decimal(const char *str, t_struct *info, va_list ap)
 
 	if (str[info->cmpt] == 'd' || str[info->cmpt] == 'i')
 	{
-		 if (info->length == 0)
+		if (info->length == 0)
 			nbr = va_arg(ap, int);
 		else if (info->length == 2)
 			nbr = (signed char)va_arg(ap, int);
@@ -134,9 +133,7 @@ void		ft_print_decimal(const char *str, t_struct *info, va_list ap)
 			nbr = va_arg(ap, long long);
 		if (info->minus == 1)
 			ft_print_left(nbr, info);
-	else
+		else
 			ft_print_right(nbr, info);
 	}
 }
-
-// 1 = h | 2 = hh | 3 = l | 4 = ll | 5 = L

@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 16:37:15 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:06:24 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 {
 	if (str[info->cmpt] == 'd' || str[info->cmpt] == 'i')
 		ft_print_decimal(str, info, ap);
-	/*else if (str[info->cmpt] == 'o')
+/*	else if (str[info->cmpt] == 'o')
 		ft_print_octal(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == 'u')
 		ft_print_unsigned(str[info->cmpt], info, ap);
@@ -41,8 +41,8 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 	else if (str[info->cmpt] == 'c')
 		ft_print_char(str, info, ap);
 	else if (str[info->cmpt] == 's')
-		ft_print_string(str, info, ap);/*
-	else if (str[info->cmpt] == '%')
+		ft_print_string(str, info, ap);
+/*	else if (str[info->cmpt] == '%')
 		ft_print_percent(str[info->cmpt], info);*/
 }
 
@@ -56,17 +56,17 @@ void			ft_printf(const char *str, ...)
 	va_start(ap, str);
 	while (str[info.cmpt])
 	{
-		if(str[info.cmpt] == '%')
+		if (str[info.cmpt] == '%')
 		{
 			info.cmpt++;
 			ft_parsing(str, &info, ap);
-			  if (info.found == 1)
-		  		ft_aff(str, &info,  ap);
-		//	else
-		//		ft_aff_error_carac()
+			if (info.found == 1)
+				ft_aff(str, &info, ap);
+/*			else
+				ft_aff_error_carac()*/
 			ft_reset_struct(&info);
 		}
-		else if(str[info.cmpt] != '%')
+		else if (str[info.cmpt] != '%')
 			ft_putchar(str[info.cmpt]);
 		info.cmpt++;
 	}

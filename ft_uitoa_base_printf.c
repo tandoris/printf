@@ -6,13 +6,13 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 11:25:43 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 16:37:21 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 17:58:06 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	            ft_uitoa_base_printf(uintmax_t nbr, int base, char x)
+int				ft_uitoa_base_printf(uintmax_t nbr, int base, char x)
 {
 	int			len;
 	uintmax_t	nbr2;
@@ -25,7 +25,7 @@ int	            ft_uitoa_base_printf(uintmax_t nbr, int base, char x)
 		len++;
 	if (!(ret = (char*)malloc(sizeof(char) * (len + 1))))
 		return (0);
-	mall = (x == 'X') ? 
+	mall = (x == 'X') ?
 		ft_strdup("0123456789ABCDEF") : ft_strdup("0123456789abcdef");
 	ret[len] = '\0';
 	while (len-- > 0)

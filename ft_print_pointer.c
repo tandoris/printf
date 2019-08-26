@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 10:32:41 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 16:37:25 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:10:47 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			ft_print_pointer_left(uintmax_t nbr, t_struct *info)
 	write(1, "0x", 2);
 	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
 		return ;
-	info->width = (info->precision >= nbrlen) ? 
+	info->width = (info->precision >= nbrlen) ?
 		info->width - (info->precision + 2) : info->width - nbrlen;
 	while (info->precision > (nbrlen - 2))
 	{
@@ -50,7 +50,7 @@ void			ft_print_pointer_right(uintmax_t nbr, t_struct *info)
 	write(1, "0x", 2);
 	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
 		return ;
-	while ( info->precision > (nbrlen - 2))
+	while (info->precision > (nbrlen - 2))
 	{
 		write(1, "0", 1);
 		info->precision -= 1;
