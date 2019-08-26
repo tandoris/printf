@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/25 00:48:16 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:06:41 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,40 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-typedef	struct s_struct
+typedef	struct	s_struct
 {
-	int 			cmpt;
-	char 			**arg;
-	char			*type;
-	//flags
-	int				hash;
-	int				zero;
-	int				minus;
-	int				plus;
-	int				space;
-	// Minimum field width
-	int				width;
-	//precision field
-	int				precision;
-	int				precision_find;
-	//longueur field
-	// 1 = h | 2 = hh | 3 = l | 4 = ll | 5 = L
-	int				length;
-	//autres
-	int				found;
-	char			*atoi;
+	int			cmpt;
+	char		**arg;
+	char		*type;
+/*	flags */
+	int			hash;
+	int			zero;
+	int			minus;
+	int			plus;
+	int			space;
+/*	 Minimum field width */
+	int			width;
+/*	precision field */
+	int			precision;
+	int			precision_find;
+/*	longueur field
+	 1 = h | 2 = hh | 3 = l | 4 = ll | 5 = L */
+	int			length;
+/*	autres */
+	int			found;
+	char		*atoi;
 }				t_struct;
 
 void			ft_printf_2(const char *str, ...);
 void			ft_parsing(const char *str, t_struct *info, va_list ap);
 void			ft_print_decimal(const char *str, t_struct *info, va_list ap);
-int         	ft_nbr_len_base(intmax_t value, int base);
-int         	ft_itoa_base_printf(intmax_t nbr, int base);
-void    		ft_padding_left(int nbrlen, t_struct *inf0);
-void    		ft_padding_right(int nbrlen, t_struct *info);
+int				ft_nbr_len_base(intmax_t value, int base);
+int				ft_itoa_base_printf(intmax_t nbr, int base);
+void			ft_padding_left(int nbrlen, t_struct *info);
+void			ft_padding_right(int nbrlen, int neg, t_struct *info);
+void			ft_print_char(const char *str, t_struct *info, va_list ap);
+void			ft_print_string(const char *str, t_struct *info, va_list ap);
+void			ft_print_pointer(const char *str, t_struct *info, va_list ap);
+int				ft_uitoa_base_printf(uintmax_t nbr, int base, char x);
+int				ft_unsigned_nbr_len_base(uintmax_t nbr, int base);
 #endif

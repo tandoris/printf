@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_unsigned_nbr_len_base.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 04:47:24 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/20 03:10:04 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/26 12:51:15 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/26 17:49:14 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int		main(void)
+int		ft_unsigned_nbr_len_base(uintmax_t nbr, int base)
 {
-	char	*truc;
-	int 	a;
+	int		cmpt;
 
-	a = 256;
-	truc = "tazwrxytcu";
-
-	printf("%#+ 05.3d", a);
-	//write(1, &a, 2);
-	return(0);
+	cmpt = 0;
+	if (nbr == 0)
+		return (1);
+	while (nbr > 0)
+	{
+		nbr /= base;
+		cmpt++;
+	}
+	return (cmpt);
 }
