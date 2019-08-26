@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 11:10:43 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 14:47:24 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 	else if (str[info->cmpt] == 'u')
 		ft_print_unsigned(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == 'x' || str[info->cmpt] == 'X')
-		ft_print_hex(str[info->cmpt], info, ap);
+		ft_print_hex(str[info->cmpt], info, ap);*/
 	else if (str[info->cmpt] == 'p')
-		ft_print_pointer(str[info->cmpt], info, ap);*/
+		ft_print_pointer(str, info, ap);
 	else if (str[info->cmpt] == 'c')
 		ft_print_char(str, info, ap);
 	else if (str[info->cmpt] == 's')
@@ -77,14 +77,16 @@ int				main(int ac, char **av)
 {
 	char 		*animal;
 	char		*cri;
+	char		b;
 	int 		a;
 	
 	(void)ac;
-	a = 56;
+	a = 0;
+	b = 56;
 	animal	= " cochon chien dragon groaaaar";
 	cri 	= "blup blup";
-	ft_printf(av[1], animal);
+	ft_printf(av[1], b);
 	write(1, "\n", 1);
-	printf(av[1], animal);
+	printf(av[1], b);
 	return(0);
 }

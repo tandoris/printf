@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base_printf.c                              :+:      :+:    :+:   */
+/*   ft_uitoa_base_printf.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 04:29:03 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 13:27:22 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/26 12:47:43 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/26 14:46:36 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_itoa_base_printf(intmax_t nbr, int base)
+int	            ft_uitoa_base_printf(uintmax_t nbr, int base, char x)
 {
 	int			len;
-	intmax_t	nbr2;
+	uintmax_t	nbr2;
 	char		*mall;
 	char		*ret;
 
 	len = 1;
 	nbr2 = nbr;
-	if (nbr < -9223372036854775807)
-		return (write(1, "223372036854775808", 19));
 	while (nbr2 /= base)
 		len++;
 	if (!(ret = (char*)malloc(sizeof(char) * (len + 1))))
 		return (0);
-	mall = ft_strdup("0123456789ABCDEF");
+	mall = (x == 'X') ? 
+		ft_strdup("0123456789ABCDEF") : ft_strdup("0123456789abcdef");
 	ret[len] = '\0';
 	while (len-- > 0)
 	{

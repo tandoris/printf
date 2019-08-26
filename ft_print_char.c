@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 07:02:33 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/25 10:49:21 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 12:39:05 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void				ft_print_char(const char *str, t_struct *info, va_list ap)
 {
 	unsigned char 	c;
 
-	c = (unsigned char)va_arg(ap, int);
+	if (str[info->cmpt] == 'c')
+		c = (unsigned char)va_arg(ap, int);
 	if (info->minus == 1)
 		ft_print_left_char(c, info);
 	else

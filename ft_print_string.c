@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 07:15:49 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 11:12:25 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 12:38:54 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void		ft_print_string_right(char *string, t_struct *info)
 void		ft_print_string(const char *str, t_struct *info, va_list ap)
 {
 	char	*string;
-	string = va_arg(ap, char *);
+
+	if (str[info->cmpt] == 's')
+		string = va_arg(ap, char *);
 	if (info->minus == 1)
 		ft_print_string_left(string, info);
 	else

@@ -6,64 +6,60 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 04:45:04 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/25 10:49:19 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/26 15:03:53 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_print_right2(intmax_t nbr, int neg, t_struct *info, int nbrlen)
+int			ft_print_right2(intmax_t nbr, int neg, t_struct *info)
 {
-	if (neg == 1 || info->plus == 1)
-		info->width--;
-	if (info->space == 1 && neg != 1)
+	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
 	{
-		write(1, " ", 1);
-		info->width--;
-	}
-	info->width = (nbrlen >= info->precision) ? info->width - nbrlen : info->width - info->precision;
-	info->precision = (nbr != 0) ? info->precision - nbrlen : info->precision;
-	while ((info->precision_find == 1 && info->width > 0) || (info->zero == 0 && info->width > 0))
-	{
-		write(1, " ", 1);
-		info->width -= 1;
-	}
-	while (info->width-- > 0 && info->zero == 1)
-	{
-		if (neg == 1 || (info->plus && neg == 1))
-			write(1, "-", 1);
-		if (info->plus && neg == 0)
+		if (info->plus == 1 && info->width)
+			info->width -= 1;
+		while (info->width)
+		{
+			write(1, " ", 1);
+			info->width -= 1;
+		}
+		if (info->plus == 1)
 			write(1, "+", 1);
-		neg = 0;
-		info->plus = 0;
-		write(1, "0", 1);
+		return (1);
 	}
-	return (neg);
+	if (info->space == 1 && neg == 0 && info->width == 0)
+		write(1, " ", 1);
+	if (info->plus == 1 && info->zero == 1 && neg == 0)
+		write(1, "+", 1);
+	if (neg == 1 && info->zero == 1)
+		write(1, "-", 1);
+	return (0);
 }
 
 void		ft_print_right(intmax_t nbr, t_struct *info)
 {
 	int nbrlen;
-	int	neg;
-	int	z;
+	int neg;
 
+	nbrlen = ft_nbr_len_base(nbr, 10);
 	neg = (nbr < 0) ? 1 : 0;
 	nbr = (nbr < 0) ? -nbr : nbr;
-	z = (nbr == 0) ? 1 : 0;
-	nbrlen = ft_nbr_len_base(nbr, 10);
-	neg = ft_print_right2(nbr, neg, info, nbrlen);
-	if (nbr == 0 && info->precision == 0)
-		write(1, " ", 1);
-	if ((info->plus == 1 && neg == 1) || neg == 1)
-		write(1, "-",1);
-	if (info->plus == 1 && neg == 0)
+	if (ft_print_right2(nbr, neg, info))
+		return ;
+	if (info->plus == 1 && neg == 0 && info->width && info->precision_find == 0)
+		nbrlen++;
+	ft_padding_right(nbrlen, neg, info);
+	if (info->zero == 0 && info->plus == 1 && neg == 0)
 		write(1, "+", 1);
-	while (info->precision > z)
+	else if (info->zero == 0 && neg == 1)
 	{
-		write(1, "0", 1);
-		info->precision -= 1;
+		write(1, "-", 1);
+		nbrlen--;
 	}
-	if (nbr != 0 || info->precision != 0)
+	info->precision = (info->width > info->precision) 
+		? info->width : info->precision;
+	while (nbrlen++ < info->precision)
+		write(1, "0", 1);
 	ft_itoa_base_printf(nbr, 10);
 }
 
