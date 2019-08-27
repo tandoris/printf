@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 19:55:44 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/27 21:54:52 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 		ft_print_char(str, info, ap);
 	else if (str[info->cmpt] == 's')
 		ft_print_string(str, info, ap);
-/*	else if (str[info->cmpt] == '%')
-		ft_print_percent(str[info->cmpt], info);*/
+	else if (str[info->cmpt] == '%')
+		ft_print_percent(str, info);
 }
 
 void			ft_printf(const char *str, ...)
@@ -85,8 +85,8 @@ int				main(int ac, char **av)
 	b = 56;
 	animal	= " cochon chien dragon groaaaar";
 	cri 	= "blup blup";
-	ft_printf(av[1], b);
+	ft_printf(av[1]);
 	write(1, "\n", 1);
-	printf(av[1], b);
+	printf(av[1]);
 	return(0);
 }

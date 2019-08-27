@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/25 07:02:33 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/27 19:34:33 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/27 21:23:44 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/27 21:54:07 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void				ft_print_left_char(unsigned char c, t_struct *info)
+void	ft_print_percent_left(t_struct *info)
 {
-	write(1, &c, 1);
+	write(1, "%", 1);
 	while (info->width > 1)
 	{
 		write(1, " ", 1);
@@ -22,7 +22,7 @@ void				ft_print_left_char(unsigned char c, t_struct *info)
 	}
 }
 
-void				ft_print_right_char(unsigned char c, t_struct *info)
+void	ft_print_percent_right(t_struct *info)
 {
 	while (info->width > 1)
 	{
@@ -32,17 +32,18 @@ void				ft_print_right_char(unsigned char c, t_struct *info)
 			write(1, " ", 1);
 		info->width -= 1;
 	}
-	write(1, &c, 1);
+	write(1, "%", 1);
 }
 
-void				ft_print_char(const char *str, t_struct *info, va_list ap)
-{
-	unsigned char	c;
 
-	if (str[info->cmpt] == 'c')
-		c = (unsigned char)va_arg(ap, int);
-	if (info->minus == 1)
-		ft_print_left_char(c, info);
-	else
-		ft_print_right_char(c, info);
+
+void	ft_print_percent(const char *str, t_struct *info)
+{
+	if (str[info->cmpt] == '%')
+	{
+		if (info->minus == 1)
+			ft_print_percent_left(info);
+		else
+			ft_print_percent_right(info);
+	}
 }

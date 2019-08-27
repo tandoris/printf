@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/26 19:55:51 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/27 21:53:17 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libftprintf/libft.h"
 
 typedef	struct	s_struct
 {
 	int			cmpt;
-	char		**arg;
-	char		*type;
-/*	flags */
+/*		flags */
 	int			hash;
 	int			zero;
 	int			minus;
@@ -45,7 +43,7 @@ typedef	struct	s_struct
 void			ft_printf_2(const char *str, ...);
 void			ft_parsing(const char *str, t_struct *info, va_list ap);
 void			ft_print_decimal(const char *str, t_struct *info, va_list ap);
-int				ft_nbr_len_base(intmax_t value, int base);
+int				ft_nbr_len_base(intmax_t nbr, int base);
 int				ft_itoa_base_printf(intmax_t nbr, int base);
 void			ft_padding_left(int nbrlen, t_struct *info);
 void			ft_padding_right(int nbrlen, int neg, t_struct *info);
@@ -54,4 +52,5 @@ void			ft_print_string(const char *str, t_struct *info, va_list ap);
 void			ft_print_pointer(const char *str, t_struct *info, va_list ap);
 int				ft_uitoa_base_printf(uintmax_t nbr, int base, char x);
 int				ft_unsigned_nbr_len_base(uintmax_t nbr, int base);
+void			ft_print_percent(const char *str, t_struct *info);
 #endif
