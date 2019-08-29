@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/27 21:54:52 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/29 23:18:11 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 /*	else if (str[info->cmpt] == 'o')
 		ft_print_octal(str[info->cmpt], info, ap);
 	else if (str[info->cmpt] == 'u')
-		ft_print_unsigned(str[info->cmpt], info, ap);
+		ft_print_unsigned(str[info->cmpt], info, ap);*/
 	else if (str[info->cmpt] == 'x' || str[info->cmpt] == 'X')
-		ft_print_hex(str[info->cmpt], info, ap);*/
+		ft_print_hex(str, info, ap);
 	else if (str[info->cmpt] == 'p')
 		ft_print_pointer(str, info, ap);
 	else if (str[info->cmpt] == 'c')
@@ -82,11 +82,11 @@ int				main(int ac, char **av)
 	
 	(void)ac;
 	a = 0;
-	b = 56;
+	b = -46;
 	animal	= " cochon chien dragon groaaaar";
 	cri 	= "blup blup";
-	ft_printf(av[1]);
+	ft_printf(av[1], b);
 	write(1, "\n", 1);
-	printf(av[1]);
+	printf(av[1], b);
 	return(0);
 }

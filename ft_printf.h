@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/27 21:53:17 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:16:20 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void			ft_print_pointer(const char *str, t_struct *info, va_list ap);
 int				ft_uitoa_base_printf(uintmax_t nbr, int base, char x);
 int				ft_unsigned_nbr_len_base(uintmax_t nbr, int base);
 void			ft_print_percent(const char *str, t_struct *info);
+void			ft_print_hex(const char *str, t_struct *info, va_list ap);
 #endif

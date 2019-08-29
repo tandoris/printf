@@ -6,7 +6,7 @@
 #    By: clboutry <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/20 04:12:06 by clboutry          #+#    #+#              #
-#    Updated: 2019/08/27 21:53:48 by clboutry         ###   ########.fr        #
+#    Updated: 2019/08/29 21:18:22 by clboutry         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = ft_printf.c\
 	   ft_uitoa_base_printf.c\
 	   ft_unsigned_nbr_len_base.c\
 	   ft_print_percent.c\
+	   ft_print_hex.c\
 
 FLAGS = -Wall -Wextra -Werror
 
