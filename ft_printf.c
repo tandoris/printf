@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/29 23:18:11 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/30 04:48:46 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 {
 	if (str[info->cmpt] == 'd' || str[info->cmpt] == 'i')
 		ft_print_decimal(str, info, ap);
-/*	else if (str[info->cmpt] == 'o')
-		ft_print_octal(str[info->cmpt], info, ap);
-	else if (str[info->cmpt] == 'u')
+	else if (str[info->cmpt] == 'o')
+		ft_print_oct(str, info, ap);
+/*	else if (str[info->cmpt] == 'u')
 		ft_print_unsigned(str[info->cmpt], info, ap);*/
 	else if (str[info->cmpt] == 'x' || str[info->cmpt] == 'X')
 		ft_print_hex(str, info, ap);

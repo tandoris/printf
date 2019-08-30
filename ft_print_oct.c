@@ -1,45 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*   ft_print_oct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 23:22:00 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/30 04:43:17 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/30 03:53:23 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/30 05:13:51 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_print_hex_left(uintmax_t nbr, t_struct *info, char x)
+void			ft_print_oct_left(uintmax_t nbr, t_struct *info)
 {
 	int			nbrlen;
 
-	nbrlen = ft_unsigned_nbr_len_base(nbr, 16);
+	nbrlen = ft_unsigned_nbr_len_base(nbr, 8);
 	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
 	{
 		while (info->width > 0)
 		{
-			write (1, " ", 1);
+//			write (1, " ", 1);
 			info->width -= 1;
 		}
 		return ;
 	}
 	if (info->hash == 1 && nbr != 0)
-		info->width -= 2;
-	if (info->hash == 1 && x == 'x' && nbr != 0)
-		write(1, "0x", 2);
-	else if (info->hash == 1 && x == 'X' && nbr != 0)
-		write(1, "0X", 2);
+	{
+		info->width -= 1;
+		write (1, "0", 1);
+	}
 	while (nbrlen++ < info->precision)
 		write(1, "0", 1);
-	ft_uitoa_base_printf(nbr, 16, x);
+	ft_uitoa_base_printf(nbr, 8, 0);
 	while (info->width-- >= nbrlen)
 		write(1, " ", 1);
 }
 
-void			ft_padding_x(int nbrlen, t_struct *info)
+void			ft_padding_oct(int nbrlen, t_struct *info)
 {
 	if (info->precision_find == 0)
 		while (info->width-- > nbrlen)
@@ -65,20 +64,13 @@ void			ft_padding_x(int nbrlen, t_struct *info)
 	}
 }
 
-
-void			ft_x(uintmax_t nbr, char x, t_struct *info )
-{
-	if (info->hash == 1 && x == 'x' && nbr != 0)
-		write(1, "0x", 2);
-  	else if (info->hash == 1 && x == 'X' && nbr != 0)
-		write(1, "0X", 2);
-}
-
-void			ft_print_hex_right(uintmax_t nbr, t_struct *info, char x)
+void			ft_print_oct_right(uintmax_t nbr, t_struct *info)
 {
 	int			nbrlen;
+	int			h;
 
-	nbrlen = ft_unsigned_nbr_len_base(nbr, 16);
+	nbrlen = ft_unsigned_nbr_len_base(nbr, 8);
+	h = (info->precision > nbrlen) ?  1 : 0;
 	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
 	{
 		while (info->width)
@@ -88,28 +80,21 @@ void			ft_print_hex_right(uintmax_t nbr, t_struct *info, char x)
 		}
 		return ;
 	}
-	if (info->hash == 1 && nbr != 0)
-		info->width -= 2;
-	if (info->hash == 1 && info->zero == 1)
-		ft_x(nbr, x, info);
-	ft_padding_x(nbrlen, info);
-	if (info-> hash == 1 && info-> zero == 0)
-		ft_x(nbr, x, info);
+	if (info->hash == 1 && nbr != 0 && h == 0)
+			info->width -= 1;
+	ft_padding_oct(nbrlen, info);
+	if (info->hash == 1 && h == 0)
+		write (1, "0", 1);
 	while (nbrlen++ < info->precision)
 		write(1, "0", 1);
-	ft_uitoa_base_printf( nbr, 16, x);
+	ft_uitoa_base_printf( nbr, 8, 0);
 }
 
-void			ft_print_hex(const char *str, t_struct *info, va_list ap)
+void                    ft_print_oct(const char *str, t_struct *info, va_list ap)
 {
-	uintmax_t 	nbr;
-	char		x;
+	uintmax_t       nbr;
 
-	if (str[info->cmpt] == 'x')
-		x = 'x';
-	else
-		x = 'X';
-	if (str[info->cmpt] == 'x' || str[info->cmpt] == 'X')
+	if (str[info->cmpt] == 'o' )
 	{
 		if (info->length == 0)
 			nbr = va_arg(ap, unsigned int);
@@ -122,8 +107,8 @@ void			ft_print_hex(const char *str, t_struct *info, va_list ap)
 		else if (info->length == 4)
 			nbr = va_arg(ap, unsigned long long);
 		if (info->minus == 1)
-			ft_print_hex_left(nbr, info, x);
+			ft_print_oct_left(nbr, info);
 		else
-			ft_print_hex_right(nbr, info, x);
+			ft_print_oct_right(nbr, info);
 	}
 }
