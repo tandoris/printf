@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/31 04:04:45 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/31 22:55:34 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
-# include "libftprintf/libft.h"
+# include "libft/libft.h"
 
 typedef	struct	s_struct
 {
