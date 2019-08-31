@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 21:23:44 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/27 21:54:07 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/31 04:14:38 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_print_percent_right(t_struct *info)
 	}
 	write(1, "%", 1);
 }
-
-
 
 void	ft_print_percent(const char *str, t_struct *info)
 {

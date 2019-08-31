@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 23:22:00 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/30 04:43:17 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/31 04:19:11 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			ft_print_hex_left(uintmax_t nbr, t_struct *info, char x)
 	{
 		while (info->width > 0)
 		{
-			write (1, " ", 1);
+			write(1, " ", 1);
 			info->width -= 1;
 		}
 		return ;
@@ -51,7 +51,7 @@ void			ft_padding_x(int nbrlen, t_struct *info)
 		}
 	else
 	{
-		while(nbrlen < info->precision)
+		while (nbrlen < info->precision)
 			nbrlen++;
 		if (info->zero == 1)
 			info->width--;
@@ -65,12 +65,11 @@ void			ft_padding_x(int nbrlen, t_struct *info)
 	}
 }
 
-
-void			ft_x(uintmax_t nbr, char x, t_struct *info )
+void			ft_x(uintmax_t nbr, char x, t_struct *info)
 {
 	if (info->hash == 1 && x == 'x' && nbr != 0)
 		write(1, "0x", 2);
-  	else if (info->hash == 1 && x == 'X' && nbr != 0)
+	else if (info->hash == 1 && x == 'X' && nbr != 0)
 		write(1, "0X", 2);
 }
 
@@ -93,16 +92,16 @@ void			ft_print_hex_right(uintmax_t nbr, t_struct *info, char x)
 	if (info->hash == 1 && info->zero == 1)
 		ft_x(nbr, x, info);
 	ft_padding_x(nbrlen, info);
-	if (info-> hash == 1 && info-> zero == 0)
+	if (info->hash == 1 && info->zero == 0)
 		ft_x(nbr, x, info);
 	while (nbrlen++ < info->precision)
 		write(1, "0", 1);
-	ft_uitoa_base_printf( nbr, 16, x);
+	ft_uitoa_base_printf(nbr, 16, x);
 }
 
 void			ft_print_hex(const char *str, t_struct *info, va_list ap)
 {
-	uintmax_t 	nbr;
+	uintmax_t	nbr;
 	char		x;
 
 	if (str[info->cmpt] == 'x')

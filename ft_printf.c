@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 01:37:37 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/30 04:48:46 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/31 04:21:45 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void			ft_aff(const char *str, t_struct *info, va_list ap)
 		ft_print_decimal(str, info, ap);
 	else if (str[info->cmpt] == 'o')
 		ft_print_oct(str, info, ap);
-/*	else if (str[info->cmpt] == 'u')
-		ft_print_unsigned(str[info->cmpt], info, ap);*/
+	else if (str[info->cmpt] == 'u')
+		ft_print_unsigned(str, info, ap);
 	else if (str[info->cmpt] == 'x' || str[info->cmpt] == 'X')
 		ft_print_hex(str, info, ap);
 	else if (str[info->cmpt] == 'p')
@@ -62,8 +62,6 @@ void			ft_printf(const char *str, ...)
 			ft_parsing(str, &info, ap);
 			if (info.found == 1)
 				ft_aff(str, &info, ap);
-/*			else
-				ft_aff_error_carac()*/
 			ft_reset_struct(&info);
 		}
 		else if (str[info.cmpt] != '%')
@@ -73,7 +71,7 @@ void			ft_printf(const char *str, ...)
 	va_end(ap);
 }
 
-int				main(int ac, char **av)
+/*int				main(int ac, char **av)
 {
 	char 		*animal;
 	char		*cri;
@@ -85,8 +83,8 @@ int				main(int ac, char **av)
 	b = -46;
 	animal	= " cochon chien dragon groaaaar";
 	cri 	= "blup blup";
-	ft_printf(av[1], b);
+	ft_printf(av[1], a);
 	write(1, "\n", 1);
-	printf(av[1], b);
+	printf(av[1], a);
 	return(0);
-}
+}*/
