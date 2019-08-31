@@ -1,76 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_oct.c                                     :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/30 03:53:23 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/31 04:18:42 by clboutry         ###   ########.fr       */
+/*   Created: 2019/08/31 03:41:32 by clboutry          #+#    #+#             */
+/*   Updated: 2019/08/31 04:15:11 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_print_oct_left(uintmax_t nbr, t_struct *info)
+void			ft_print_unsigned_left(uintmax_t nbr, t_struct *info)
 {
 	int			nbrlen;
 
-	nbrlen = ft_unsigned_nbr_len_base(nbr, 8);
-	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
-	{
-		while (info->width > 0)
-		{
-			write(1, " ", 1);
-			info->width -= 1;
-		}
-		return ;
-	}
-	if (info->hash == 1 && nbr != 0)
-	{
-		info->width -= 1;
-		write(1, "0", 1);
-	}
-	while (nbrlen++ < info->precision)
-		write(1, "0", 1);
-	ft_uitoa_base_printf(nbr, 8, 0);
-	while (info->width-- >= nbrlen)
-		write(1, " ", 1);
-}
-
-void			ft_padding_oct(int nbrlen, t_struct *info)
-{
-	if (info->precision_find == 0)
-		while (info->width-- > nbrlen)
-		{
-			if (info->zero == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
-		}
-	else
-	{
-		while (nbrlen < info->precision)
-			nbrlen++;
-		if (info->zero == 1)
-			info->width--;
-		while (info->width-- > nbrlen)
-		{
-			if (info->zero == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
-		}
-	}
-}
-
-void			ft_print_oct_right(uintmax_t nbr, t_struct *info)
-{
-	int			nbrlen;
-	int			h;
-
-	nbrlen = ft_unsigned_nbr_len_base(nbr, 8);
-	h = (info->precision > nbrlen) ? 1 : 0;
+	nbrlen = ft_unsigned_nbr_len_base(nbr, 10);
 	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
 	{
 		while (info->width)
@@ -80,21 +26,66 @@ void			ft_print_oct_right(uintmax_t nbr, t_struct *info)
 		}
 		return ;
 	}
-	if (info->hash == 1 && nbr != 0 && h == 0)
-		info->width -= 1;
-	ft_padding_oct(nbrlen, info);
-	if (info->hash == 1 && h == 0)
-		write(1, "0", 1);
 	while (nbrlen++ < info->precision)
 		write(1, "0", 1);
-	ft_uitoa_base_printf(nbr, 8, 0);
+	ft_uitoa_base_printf(nbr, 10, 0);
+	while (info->width >= nbrlen)
+	{
+		write(1, " ", 1);
+		info->width -= 1;
+	}
 }
 
-void			ft_print_oct(const char *str, t_struct *info, va_list ap)
+void			ft_padding(int nbrlen, t_struct *info)
+{
+	if (info->precision_find == 0 || info->precision < nbrlen)
+		while (info->width-- > nbrlen)
+		{
+			if (info->zero == 1)
+				write(1, "0", 1);
+			else
+				write(1, " ", 1);
+		}
+	else
+	{
+		if (info->plus == 1 || info->zero == 1)
+			info->width--;
+		if (info->precision > nbrlen)
+			while (info->width-- > info->precision)
+			{
+				if (info->zero == 1)
+					write(1, "0", 1);
+				else
+					write(1, " ", 1);
+			}
+	}
+}
+
+void			ft_print_unsigned_right(uintmax_t nbr, t_struct *info)
+{
+	int			nbrlen;
+
+	nbrlen = ft_unsigned_nbr_len_base(nbr, 10);
+	if (nbr == 0 && info->precision_find == 1 && info->precision == 0)
+	{
+		while (info->width)
+		{
+			write(1, " ", 1);
+			info->width -= 1;
+		}
+		return ;
+	}
+	ft_padding(nbrlen, info);
+	while (nbrlen++ < info->precision)
+		write(1, "0", 1);
+	ft_uitoa_base_printf(nbr, 10, 0);
+}
+
+void			ft_print_unsigned(const char *str, t_struct *info, va_list ap)
 {
 	uintmax_t	nbr;
 
-	if (str[info->cmpt] == 'o')
+	if (str[info->cmpt] == 'u')
 	{
 		if (info->length == 0)
 			nbr = va_arg(ap, unsigned int);
@@ -106,9 +97,9 @@ void			ft_print_oct(const char *str, t_struct *info, va_list ap)
 			nbr = va_arg(ap, unsigned long);
 		else if (info->length == 4)
 			nbr = va_arg(ap, unsigned long long);
-		if (info->minus == 1)
-			ft_print_oct_left(nbr, info);
+		if (info->minus)
+			ft_print_unsigned_left(nbr, info);
 		else
-			ft_print_oct_right(nbr, info);
+			ft_print_unsigned_right(nbr, info);
 	}
 }

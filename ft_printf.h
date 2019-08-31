@@ -6,7 +6,7 @@
 /*   By: clboutry <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 02:22:36 by clboutry          #+#    #+#             */
-/*   Updated: 2019/08/30 04:40:02 by clboutry         ###   ########.fr       */
+/*   Updated: 2019/08/31 04:04:45 by clboutry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ int				ft_unsigned_nbr_len_base(uintmax_t nbr, int base);
 void			ft_print_percent(const char *str, t_struct *info);
 void			ft_print_hex(const char *str, t_struct *info, va_list ap);
 void			ft_print_oct(const char *str, t_struct *info, va_list ap);
+void			ft_print_unsigned(const char *str, t_struct *info, va_list ap);
 #endif
