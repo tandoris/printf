@@ -6,7 +6,7 @@
 #    By: clboutry <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/20 04:12:06 by clboutry          #+#    #+#              #
-#    Updated: 2019/08/31 04:53:02 by clboutry         ###   ########.fr        #
+#    Updated: 2019/08/31 22:56:18 by clboutry         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS = ft_printf.c\
 
 FLAGS = -Wall -Wextra -Werror
 
-LIBFT = libftprintf/libftprintf.a
+LIBFT = libft/libft.a
 
 LIBPRINTF = ft_printf.h
 
@@ -43,15 +43,15 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C libftprintf/
+	@make -C libft/
 	@$(CC) $(FLAGS) $(LIBFT) $(OBJS) -o $(NAME) 
 
 clean:
 	@rm -rf $(OBJS)
-	@make clean -C libftprintf/
+	@make clean -C libft/
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make fclean -C libftprintf/
+	@make fclean -C libft/
 
 re: fclean all
